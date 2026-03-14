@@ -18,4 +18,4 @@ def my_function():
 
 The rest will be handled automatically - no `print()` needed!
 
-![Screenshot of the perf module in work](_readme-assets\perf.png)
+![Screenshot of the perf module in work](_readme-assets/perf.png)
