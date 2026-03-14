@@ -3,7 +3,7 @@ from rich import print
 import perf
 
 
-@perf.measure
+@perf.measure  # $n^3$
 def matrix_mult(m1: list, m2: list) -> list:
     m_out = []
 
@@ -43,4 +43,5 @@ def main():
     print(matrix_mult(m1, m2))
 
 
-main()
+if __name__ == "__main__":
+    main()

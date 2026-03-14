@@ -13,8 +13,8 @@ def expensive_op():
 
 
 def measure(func):
-    func_prefix = f"[magenta]\\[{func.__name__}] [/]"
     start = perf_counter()
+    func_prefix = f"[magenta]\\[{func.__name__}] [/]"
 
     def inner(*args, **kwargs):
         token = None
