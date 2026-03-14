@@ -13,6 +13,7 @@ def expensive_op():
 
 
 def measure(func):
+    func_prefix = f"[magenta]\\[{func.__name__}] [/]"
     start = perf_counter()
 
     def inner(*args, **kwargs):
@@ -26,11 +27,11 @@ def measure(func):
         result = func(*args, **kwargs)
 
         if token is not None:
-            print(f"[yellow italic]Expensive operations: {counter[0]}[/]")
+            print(f"{func_prefix}[yellow italic]Expensive operations: {counter[0]}[/]")
             _add_counter.reset(token)
 
         print(
-            f"[yellow italic]Execution time (ms): {(perf_counter() - start) * 1000:.2f}[/]"
+            f"{func_prefix}[yellow italic]Execution time (ms): {(perf_counter() - start) * 1000:.2f}[/]"
         )
 
         return result
