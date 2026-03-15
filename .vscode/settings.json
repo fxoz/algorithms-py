@@ -4,7 +4,16 @@
         "**/.svn": true,
         "**/.hg": true,
         "**/.DS_Store": true,
-        "**/Thumbs.db": true
+        "**/Thumbs.db": true,
+        "__pycache__": true,
+        ".venv": true,
+        ".vscode": true,
+        ".python-version": true
     },
-    "hide-files.files": []
+    "hide-files.files": [
+        "__pycache__",
+        ".venv",
+        ".vscode",
+        ".python-version"
+    ]
 }
