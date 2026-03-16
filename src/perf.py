@@ -2,6 +2,7 @@ import contextvars
 
 from time import perf_counter
 from rich import print
+from functools import wraps
 
 _add_counter = contextvars.ContextVar("add_counter", default=None)
 
@@ -16,6 +17,7 @@ def measure(func):
     start = perf_counter()
     func_prefix = f"[magenta]\\[{func.__name__}] [/]"
 
+    @wraps(func)
     def inner(*args, **kwargs):
         token = None
         counter = _add_counter.get()
@@ -30,9 +32,9 @@ def measure(func):
             print(f"{func_prefix}[yellow italic]Expensive operations: {counter[0]}[/]")
             _add_counter.reset(token)
 
-        print(
-            f"{func_prefix}[yellow italic]Execution time (ms): {(perf_counter() - start) * 1000:.2f}[/]"
-        )
+        # print(
+        #     f"{func_prefix}[yellow italic]Execution time (ms): {(perf_counter() - start) * 1000:.2f}[/]"
+        # )
 
         return result
 

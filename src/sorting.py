@@ -23,7 +23,7 @@ def sort_bubble(arr: list) -> list:
 
 
 @perf.measure  # $O(n^2)$
-def sort_selection(arr: list):
+def sort_selection(arr: list) -> list:
     for shift in range(len(arr) - 1):
         idx_smallest = shift
 
@@ -37,28 +37,58 @@ def sort_selection(arr: list):
 
 
 @perf.measure  # $ O(n^2) \text{\quad Best case: } O(n)$
-def sort_insert(arr: list):
-    for i in range(1, len(arr) - 1):
-        key = arr[i]
-        j = i - 1
+def sort_insert(arr: list) -> list:
+    for i in range(1, len(arr)):
+        curr = arr[i]
 
-        while j >= 0 and arr[j] > key:
+        # i's left neighbor
+        left = i - 1
+
+        # while in bounds && left value greater than current
+        while left >= 0 and arr[left] > curr:
             perf.expensive_op()
-            arr[j + 1] = arr[j]
-            j -= 1
+            # set right neighbor of left to value of left
+            arr[left + 1] = arr[left]
+            print(f"[{left + 1}] = {arr[left]}")
 
-        perf.expensive_op()
-        arr[j + 1] = key
+            # move one step left
+            left -= 1
+
+        # set right neighbor to current val
+        arr[left + 1] = curr
+
+    return arr
+
+
+@perf.measure
+def sort_merge(arr: list) -> list:
+    pass
+
+
+@perf.measure
+def sort_heap(arr: list) -> list:
+    pass
+
+
+@perf.measure
+def sort_quick(arr: list) -> list:
+    pass
+
+
+@perf.measure
+def sort_radix(arr: list) -> list:
+    pass
 
 
 def main():
-    sort_func = sort_insert  # ? Change as needed.
+    for func in [sort_bubble, sort_selection, sort_insert]:
+        v = [0, 6, 9, 1, 3, 3, 7]
+        v_orig = deepcopy(v)
+        func(v)
 
-    v = [0, 6, 9, 1, 3, 3, 7]
-    v_orig = deepcopy(v)
-    sort_func(v)
-    assert v == sorted(v_orig), "Did not sort correctly!"
-    print(v)
+        print(f"[bold blue]{func.__name__}():[/bold blue]")
+        print(v)
+        assert v == sorted(v_orig), "Did not sort correctly!"
 
 
 if __name__ == "__main__":

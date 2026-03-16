@@ -4,7 +4,9 @@
 
 [Comment Formula](https://marketplace.visualstudio.com/items?itemName=howcasperwhat.comment-formula) adds LaTeX formatting to comments, making displaying mathematical formulas inside of code possible.
 
-## Performance Measuring
+## API
+
+### `perf`
 
 The `perf` module I wrote makes it trivial to measure any algorithm's performance:
 
@@ -12,10 +14,29 @@ The `perf` module I wrote makes it trivial to measure any algorithm's performanc
 @perf.measure
 def my_function():
     for i in range(100):
-        # heavy calculation, etc.
         perf.expensive_op() # counter++
+        # perform heavy calculations, etc.
 ```
 
 The rest will be handled automatically - no `print()` needed!
 
-![Screenshot of the perf module in work](_readme-assets/perf.png)
+Result:
+
+```py
+[my_function] Expensive operations: 100
+```
+
+## `rand`
+
+`rand.digits(n)` returns a list of `n` digits from 0-9:
+
+```py
+rand.digits(n=5)
+# [9, 2, 3, 8, 7]
+```
+
+
+## Glossary
+
+- `iter` = iterative functions that utilize loops.
+- `recu` = recursive functions that call themselves. Their use can be controversial, especially in Python, since the interpreter limits recursion depth by default. Also can be more prone to errors and use more overhead. Sometimes easier to write, in my personal opinion.
