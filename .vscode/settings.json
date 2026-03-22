@@ -8,12 +8,14 @@
         "__pycache__": true,
         ".venv": true,
         ".vscode": true,
-        ".python-version": true
+        ".python-version": true,
+        "src/__pycache__": true
     },
     "hide-files.files": [
         "__pycache__",
         ".venv",
         ".vscode",
-        ".python-version"
+        ".python-version",
+        "src/__pycache__"
     ]
 }
